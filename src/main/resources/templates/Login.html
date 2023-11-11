@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/Login.css}" type="text/css">
+</head>
+
+
+<body>
+	
+ <div class="container">
+    <form action="/login/result" method="post">
+     <p class="fsize">販売管理ログイン画面</p>
+     <label for="user">名前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+     <select name="userid" class="user" id="user">
+       <option th:each="user:${userList}" th:text="${user.usernme}" th:value="${user.userid}"></option>
+     </select>
+     <label for="pass" class="pass-label" >パスワード</label>
+     <input type="password" placeholder="Password" id="pass" name="pass"/>
+     <button type="submit">ログイン</button>
+    </form>
+    <div th:if="${session.keySet().contains('userValidate')}"><p>*ユーザーとパスワードが一致していません。</p></div>
+
+   </div>
+</body>
+
+</html>
